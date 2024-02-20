@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React from 'react'; 
+import Header from './Components/Header/Header';
+import Footer from './Components/Footer/Footer';
+import DisplayEvents from './Views/DisplayEvents';
+import Form from './Components/Forms/Form';
+import { Route, Routes } from 'react-router-dom';
+import { TodoContextProvider } from './Store/TodoContext';
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <TodoContextProvider>
+        <div className='bg-[#F2F2F2] font-sans tracking-wide text-2xl flex h-dvh '>
+          <Header/> 
+          <div className='flex-1'>
+          <Routes>
+            <Route path="/" element={<DisplayEvents />}></Route>
+            <Route path="/edit/:id" element={<Form />}></Route>
+            <Route path="/addtask" element={<Form />}></Route>
+          </Routes> 
+          </div>
+          <Footer />
+        </div>
+      </TodoContextProvider>
+    </>
   );
 }
-
 export default App;
